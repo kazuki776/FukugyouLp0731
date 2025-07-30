@@ -122,7 +122,6 @@ const Solution: React.FC = () => {
                 </div>
               )}
               <p className="text-gray-600 leading-relaxed">
-                {benefit.description}
               </p>
             </motion.div>
           ))}
