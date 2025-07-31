@@ -41,7 +41,7 @@ const Solution: React.FC = () => {
     
     // Calculate path for pie slice
     const angle = (percentage / 100) * 360;
-    const startAngle = -90; // Start from top
+    const startAngle = 0; // Start from 12 o'clock (top)
     const endAngle = startAngle + angle;
     
     const startAngleRad = (startAngle * Math.PI) / 180;
