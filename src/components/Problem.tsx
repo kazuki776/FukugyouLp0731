@@ -7,11 +7,11 @@ const Problem: React.FC = () => {
     {
       icon: Target,
       title: "業務量の変動で、\n人件費に無駄が\n生じてしまう。",
-      description: "適切な技術スキルを\n持つ人材を見つけるのに苦労している"
+      description: "適切な技術スキルを持つ人材を見つけるのに苦労している"
     },
     {
       icon: Users,
-      title: "求めるスキルを持つ人材がいない",
+      title: "求めるスキルを\n持つ人材がいない",
       description: "応募者は多いが、本当に必要なスキルを持つ人材が少ない"
     },
     {
