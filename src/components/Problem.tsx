@@ -6,7 +6,8 @@ const Problem: React.FC = () => {
   const problems = [
     {
       icon: Target,
-      title: "業務量の変動で、人件費に無駄が<br />生じてしまう。",
+      title: "業務量の変動で、人件費に
+        無駄が生じてしまう。",
       description: "適切な技術スキルを持つ人材を見つけるのに苦労している"
     },
     {
