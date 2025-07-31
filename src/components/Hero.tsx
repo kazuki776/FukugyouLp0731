@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
       // Trigger custom event for form highlight
       setTimeout(() => {
         window.dispatchEvent(new CustomEvent('formScrollTriggered'));
-      }, 800); // Wait for scroll animation to complete
+      }, 1000); // Wait for scroll animation to complete
     }
   };
 

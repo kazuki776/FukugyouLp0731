@@ -25,7 +25,7 @@ function App() {
         {/* Sticky Form (Right Column - spans 1 column, only on desktop) */}
         <div className="hidden lg:block lg:col-span-1 lg:pt-32">
           <div className="sticky top-24">
-            <div id="form-section">
+            <div className="scroll-mt-20">
               <StickyForm />
             </div>
           </div>
@@ -35,7 +35,7 @@ function App() {
       {/* Mobile Form Section (< 1024px) */}
       <div className="lg:hidden py-20 bg-gradient-to-br from-slate-50 to-slate-100">
         <div className="max-w-md mx-auto px-4">
-          <div id="form-section">
+          <div id="form-section" className="scroll-mt-20">
             <StickyForm />
           </div>
         </div>
