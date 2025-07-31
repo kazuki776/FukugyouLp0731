@@ -44,14 +44,16 @@ const Problem: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="text-red-500 mb-4">
-                <problem.icon size={48} />
+              <div className="flex items-start gap-4 md:flex-col md:items-center md:text-center">
+                <div className="text-red-500 flex-shrink-0 md:mb-4">
+                  <problem.icon size={40} className="md:w-12 md:h-12" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 leading-tight">
+                  {problem.title}
+                </h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
-                {problem.title}
-              </h3>
             </motion.div>
           ))}
         </div>
