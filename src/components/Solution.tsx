@@ -140,7 +140,7 @@ const Solution: React.FC = () => {
               </div>
               {/* Donut Chart - hidden on mobile for cards with charts */}
               {(benefit.title === "実績" || benefit.title === "柔軟性") && (
-                <div className="hidden md:block md:mt-auto">
+                <div className="mt-4 md:mt-auto">
                   <DonutChart 
                     percentage={benefit.title === "実績" ? 60 : 50} 
                     label={benefit.highlight || "50%+"} 
