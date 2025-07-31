@@ -36,31 +36,46 @@ const Solution: React.FC = () => {
 
   const DonutChart: React.FC<{ percentage: number; label: string }> = ({ percentage, label }) => {
     const radius = 50;
-    const strokeWidth = 12;
-    const normalizedRadius = radius - strokeWidth * 2;
-    const circumference = normalizedRadius * 2 * Math.PI;
-    const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
+    const centerX = 64;
+    const centerY = 64;
+    
+    // Calculate path for pie slice
+    const angle = (percentage / 100) * 360;
+    const startAngle = -90; // Start from top
+    const endAngle = startAngle + angle;
+    
+    const startAngleRad = (startAngle * Math.PI) / 180;
+    const endAngleRad = (endAngle * Math.PI) / 180;
+    
+    const x1 = centerX + radius * Math.cos(startAngleRad);
+    const y1 = centerY + radius * Math.sin(startAngleRad);
+    const x2 = centerX + radius * Math.cos(endAngleRad);
+    const y2 = centerY + radius * Math.sin(endAngleRad);
+    
+    const largeArcFlag = angle > 180 ? 1 : 0;
+    
+    const pathData = [
+      `M ${centerX} ${centerY}`,
+      `L ${x1} ${y1}`,
+      `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+      'Z'
+    ].join(' ');
 
     return (
       <div className="relative w-32 h-32 mx-auto">
         <svg width="128" height="128" className="transform -rotate-90">
+          {/* Background circle */}
           <circle
             stroke="#F3F4F6"
             fill="transparent"
-            strokeWidth={strokeWidth}
-            r={normalizedRadius}
-            cx="64"
-            cy="64"
+            r={radius}
+            cx={centerX}
+            cy={centerY}
           />
-          <circle
-            stroke="url(#gradient)"
-            fill="transparent"
-            strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
-            strokeLinecap="round"
-            r={normalizedRadius}
-            cx="64"
-            cy="64"
+          {/* Pie slice */}
+          <path
+            d={pathData}
+            fill="url(#gradient)"
             className="transition-all duration-1000 ease-out"
           />
           <defs>
