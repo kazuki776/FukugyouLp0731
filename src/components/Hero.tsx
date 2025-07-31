@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
           className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
         >
           エンジニアを、必要な時に。<br />
-        </motion.h1>
+          必要な分だけリソースを確保。
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
