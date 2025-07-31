@@ -44,10 +44,10 @@ const StickyForm: React.FC = () => {
       setTimeout(() => {
         setHighlightState('blinking');
         
-        // Remove highlight after 2 seconds (3 blinks at 1s interval = 3s total)
+        // Remove highlight after 2 seconds
         setTimeout(() => {
           setHighlightState('none');
-        }, 2000);
+        }, 3000); // 3 blinks at 1s interval = 3s total
       }, 500);
     };
 
@@ -154,11 +154,11 @@ const StickyForm: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`rounded-xl shadow-xl p-8 transition-all duration-300 ${
+      className={`rounded-xl shadow-xl p-8 transition-all duration-500 ${
         highlightState === 'highlighted' 
-          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl' 
+          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl border-2 border-yellow-200' 
           : highlightState === 'blinking'
-          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl animate-gentle-blink'
+          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl border-2 border-yellow-200 animate-gentle-blink'
           : 'bg-white'
       }`}
     >
