@@ -33,13 +33,12 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
         >
-          即戦力のエンジニアを、
-          必要な時に。
-          <br />
+          即戦力のエンジニアを、<br />
+          必要な時に。<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-100">
             VisionBase
           </span>
-          が、貴社の成長
+          が、貴社の成長<br />
           を加速する。
         </motion.h1>
         
