@@ -35,22 +35,22 @@ const Solution: React.FC = () => {
   ];
 
   const DonutChart: React.FC<{ percentage: number; label: string }> = ({ percentage, label }) => {
-    const radius = 45;
-    const strokeWidth = 8;
+    const radius = 35;
+    const strokeWidth = 6;
     const normalizedRadius = radius - strokeWidth * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
 
     return (
-      <div className="relative w-32 h-32 mx-auto">
-        <svg width="128" height="128" className="transform -rotate-90">
+      <div className="relative w-24 h-24 mx-auto">
+        <svg width="96" height="96" className="transform -rotate-90">
           <circle
             stroke="#E5E7EB"
             fill="transparent"
             strokeWidth={strokeWidth}
             r={normalizedRadius}
-            cx="64"
-            cy="64"
+            cx="48"
+            cy="48"
           />
           <circle
             stroke="#4A2E8A"
@@ -59,13 +59,13 @@ const Solution: React.FC = () => {
             strokeDasharray={strokeDasharray}
             strokeLinecap="round"
             r={normalizedRadius}
-            cx="64"
-            cy="64"
+            cx="48"
+            cy="48"
             className="transition-all duration-1000 ease-out"
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-2xl font-bold text-vb-purple">{label}</span>
+          <span className="text-xl font-bold text-vb-purple">{label}</span>
         </div>
       </div>
     );
@@ -86,7 +86,7 @@ const Solution: React.FC = () => {
           </h2>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
@@ -94,35 +94,35 @@ const Solution: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center"
+              className="bg-white rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center min-h-[280px] flex flex-col justify-between"
             >
-              <div className="text-vb-purple mb-4 flex justify-center">
-                <benefit.icon size={48} />
+              <div>
+                <div className="text-vb-purple mb-4 flex justify-center">
+                  <benefit.icon size={40} />
+                </div>
+                <h3 className="text-lg font-bold text-vb-purple mb-2">
+                  【{benefit.title}】
+                </h3>
+                <h4 className="text-base font-semibold text-gray-700 mb-4">
+                  {benefit.subtitle}
+                  {benefit.highlight && (
+                    <>
+                      <span className="font-bold text-2xl text-vb-purple mx-1">
+                        {benefit.highlight}
+                      </span>
+                      {benefit.suffix}
+                    </>
+                  )}
+                </h4>
               </div>
-              <h3 className="text-xl font-bold text-vb-purple mb-2">
-                【{benefit.title}】
-              </h3>
-              <h4 className="text-lg font-semibold text-gray-700 mb-4">
-                {benefit.subtitle}
-                {benefit.highlight && (
-                  <>
-                    <span className="font-bold text-3xl text-vb-purple mx-1">
-                      {benefit.highlight}
-                    </span>
-                    {benefit.suffix}
-                  </>
-                )}
-              </h4>
               {(benefit.title === "実績" || benefit.title === "柔軟性") && (
-                <div className="mb-4">
+                <div className="mt-auto">
                   <DonutChart 
                     percentage={benefit.title === "実績" ? 60 : 50} 
                     label={benefit.highlight || "50%+"} 
                   />
                 </div>
               )}
-              <p className="text-gray-600 leading-relaxed">
-              </p>
             </motion.div>
           ))}
         </div>
