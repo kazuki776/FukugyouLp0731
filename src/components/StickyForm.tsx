@@ -67,6 +67,7 @@ const StickyForm: React.FC = () => {
       }
     };
   }, []);
+  
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -138,12 +139,12 @@ const StickyForm: React.FC = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
-        className="bg-white rounded-xl shadow-xl p-8 text-center"
-        className={`bg-white rounded-xl shadow-xl p-8 transition-all duration-300 ${
+        className={`bg-white rounded-xl shadow-xl p-8 text-center transition-all duration-300 ${
           isHighlighted 
             ? 'animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl' 
             : ''
         }`}
+      >
         <div className="text-green-500 mb-4 flex justify-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
