@@ -6,7 +6,7 @@ const Problem: React.FC = () => {
   const problems = [
     {
       icon: Target,
-      title: "希望するスキルを持つ即戦力人材にアプローチできない",
+      title: "業務量の変動で、人件費に無駄が生じてしまう。",
       description: "適切な技術スキルを持つ人材を見つけるのに苦労している"
     },
     {
@@ -16,7 +16,7 @@ const Problem: React.FC = () => {
     },
     {
       icon: Clock,
-      title: "採用プロセスが長期化し、タイミングを逃してしまう",
+      title: "採用までに時間がかかる。",
       description: "スピード感のある事業展開に採用が追いつかない"
     }
   ];
