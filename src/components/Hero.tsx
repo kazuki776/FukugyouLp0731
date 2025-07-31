@@ -35,6 +35,7 @@ const Hero: React.FC = () => {
         >
           エンジニアを、必要な時に。<br />
           必要な分だけリソースを確保。
+        </motion.h1>
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
