@@ -43,7 +43,9 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
           className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed"
         >
-          Vision Baseは、独自の非公開データベースから、貴社のプロジェクトに最適なエンジニアをご提案します。
+          独自の非公開データベースから、<br className="sm:hidden" />
+          貴社のプロジェクトに最適な<br className="sm:hidden" />
+          エンジニアをご提案します。
         </motion.p>
         
         <motion.button
