@@ -3,9 +3,9 @@ import { Download } from 'lucide-react';
 
 const Header: React.FC = () => {
   const scrollToForm = () => {
-    const formSection = document.getElementById('form-section');
-    if (formSection) {
-      formSection.scrollIntoView({ behavior: 'smooth' });
+    const talentCardsSection = document.getElementById('talent-cards-section');
+    if (talentCardsSection) {
+      talentCardsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
