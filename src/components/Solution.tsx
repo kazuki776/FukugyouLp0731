@@ -66,7 +66,9 @@ const Solution: React.FC = () => {
         <svg width="128" height="128" className="transform -rotate-90">
           {/* Background circle */}
           <circle
-            stroke="#F3F4F6"
+            fill="#F8F9FA"
+            stroke="#E5E7EB"
+            strokeWidth="1"
             fill="transparent"
             r={radius}
             cx={centerX}
