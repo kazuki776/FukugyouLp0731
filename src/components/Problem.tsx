@@ -52,9 +52,6 @@ const Problem: React.FC = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
                 {problem.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {problem.description}
-              </p>
             </motion.div>
           ))}
         </div>
