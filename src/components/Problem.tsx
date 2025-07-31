@@ -65,9 +65,6 @@ const Problem: React.FC = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <p className="text-2xl font-bold text-gray-900">
-            その課題、Vision Baseが解決します。
-          </p>
         </motion.div>
       </div>
     </section>
