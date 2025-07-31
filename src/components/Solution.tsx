@@ -5,18 +5,6 @@ import { motion } from 'framer-motion';
 const Solution: React.FC = () => {
   const benefits = [
     {
-      icon: Shield,
-      title: "信頼",
-      subtitle: "非公開データベース",
-      description: "一般には公開されていない独自のデータベースへアクセス"
-    },
-    {
-      icon: Award,
-      title: "品質",
-      subtitle: "徹底したスクリーニング",
-      description: "担当者が事前面談し、スキルと信頼性を確認済み"
-    },
-    {
       icon: TrendingUp,
       title: "実績",
       subtitle: "経験5年以上のハイレベル人材が",
@@ -31,6 +19,18 @@ const Solution: React.FC = () => {
       highlight: "半数",
       suffix: "以上",
       description: "業務委託から正社員への転換にも対応"
+    },
+    {
+      icon: Award,
+      title: "品質",
+      subtitle: "徹底したスクリーニング",
+      description: "担当者が事前面談し、スキルと信頼性を確認済み"
+    },
+    {
+      icon: Shield,
+      title: "信頼",
+      subtitle: "非公開データベース",
+      description: "一般には公開されていない独自のデータベースへアクセス"
     }
   ];
 
