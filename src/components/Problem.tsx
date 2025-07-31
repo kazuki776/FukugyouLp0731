@@ -16,7 +16,7 @@ const Problem: React.FC = () => {
     },
     {
       icon: Clock,
-      title: "採用までに時間がかかる。",
+      title: "採用までに\n時間がかかる。",
       description: "スピード感のある事業展開に採用が追いつかない"
     }
   ];
