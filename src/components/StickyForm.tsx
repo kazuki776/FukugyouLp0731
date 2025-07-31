@@ -166,11 +166,13 @@ const StickyForm: React.FC = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl animate-pulse' 
       viewport={{ once: true }}
-      className="bg-white rounded-xl shadow-xl p-8"
+      className={`bg-white rounded-xl shadow-xl p-8 transition-all duration-300 ${
+        isHighlighted 
+          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl animate-pulse' 
+          : ''
+      }`}
     >
-      <div className={`${isHighlighted ? 'animate-pulse' : ''}`}>
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-2">
           【無料】待機中人材リストを見る
@@ -298,7 +300,6 @@ const StickyForm: React.FC = () => {
           <span>お客様の情報は安全に保護されます。</span>
         </div>
       </form>
-      </div>
     </motion.div>
   );
 };
