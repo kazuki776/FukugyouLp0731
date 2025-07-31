@@ -6,6 +6,11 @@ const Header: React.FC = () => {
     const formSection = document.getElementById('form-section');
     if (formSection) {
       formSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Trigger custom event for form highlight
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('formScrollTriggered'));
+      }, 800); // Wait for scroll animation to complete
     }
   };
 

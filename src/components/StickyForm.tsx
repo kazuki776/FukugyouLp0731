@@ -27,7 +27,7 @@ const StickyForm: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [csrfToken, setCsrfToken] = useState('');
-  const [isHighlighted, setIsHighlighted] = useState(false);
+  const [highlightState, setHighlightState] = useState<'none' | 'highlighted' | 'blinking'>('none');
 
   useEffect(() => {
     // Generate CSRF token on component mount
@@ -35,36 +35,27 @@ const StickyForm: React.FC = () => {
     setCsrfToken(token);
   }, []);
 
+  // Custom event listener for form highlight
   useEffect(() => {
-    // Listen for scroll events to the form section and add highlight animation
     const handleFormHighlight = () => {
-      setIsHighlighted(true);
-      // Remove highlight after animation completes
-      setTimeout(() => setIsHighlighted(false), 3000);
+      setHighlightState('highlighted');
+      
+      // Start blinking animation after 500ms
+      setTimeout(() => {
+        setHighlightState('blinking');
+        
+        // Remove highlight after 2 seconds (3 blinks at 1s interval = 3s total)
+        setTimeout(() => {
+          setHighlightState('none');
+        }, 2000);
+      }, 500);
     };
 
-    // Check if we're scrolling to this form section and trigger highlight
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.target.id === 'form-section') {
-            // Delay to ensure scroll animation completes first
-            setTimeout(handleFormHighlight, 500);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    const formSection = document.getElementById('form-section');
-    if (formSection) {
-      observer.observe(formSection);
-    }
+    // Listen for custom scroll event
+    window.addEventListener('formScrollTriggered', handleFormHighlight);
 
     return () => {
-      if (formSection) {
-        observer.unobserve(formSection);
-      }
+      window.removeEventListener('formScrollTriggered', handleFormHighlight);
     };
   }, []);
   
@@ -139,11 +130,7 @@ const StickyForm: React.FC = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
-        className={`bg-white rounded-xl shadow-xl p-8 text-center transition-all duration-300 ${
-          isHighlighted 
-            ? 'animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl' 
-            : ''
-        }`}
+        className="bg-white rounded-xl shadow-xl p-8 text-center"
       >
         <div className="text-green-500 mb-4 flex justify-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -167,10 +154,12 @@ const StickyForm: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`bg-white rounded-xl shadow-xl p-8 transition-all duration-300 ${
-        isHighlighted 
-          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl animate-pulse' 
-          : ''
+      className={`rounded-xl shadow-xl p-8 transition-all duration-300 ${
+        highlightState === 'highlighted' 
+          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl' 
+          : highlightState === 'blinking'
+          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl animate-gentle-blink'
+          : 'bg-white'
       }`}
     >
       <div className="text-center mb-8">
