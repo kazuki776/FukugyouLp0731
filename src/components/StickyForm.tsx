@@ -27,6 +27,7 @@ const StickyForm: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [csrfToken, setCsrfToken] = useState('');
+  const [isHighlighted, setIsHighlighted] = useState(false);
 
   useEffect(() => {
     // Generate CSRF token on component mount
@@ -34,6 +35,38 @@ const StickyForm: React.FC = () => {
     setCsrfToken(token);
   }, []);
 
+  useEffect(() => {
+    // Listen for scroll events to the form section
+    const handleFormHighlight = () => {
+      setIsHighlighted(true);
+      // Remove highlight after animation completes
+      setTimeout(() => setIsHighlighted(false), 2000);
+    };
+
+    // Check if we're scrolling to this form section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target.id === 'form-section') {
+            // Small delay to ensure scroll animation completes first
+            setTimeout(handleFormHighlight, 300);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const formSection = document.getElementById('form-section');
+    if (formSection) {
+      observer.observe(formSection);
+    }
+
+    return () => {
+      if (formSection) {
+        observer.unobserve(formSection);
+      }
+    };
+  }, []);
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -106,7 +139,11 @@ const StickyForm: React.FC = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
         className="bg-white rounded-xl shadow-xl p-8 text-center"
-      >
+        className={`bg-white rounded-xl shadow-xl p-8 transition-all duration-300 ${
+          isHighlighted 
+            ? 'animate-pulse bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl' 
+            : ''
+        }`}
         <div className="text-green-500 mb-4 flex justify-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
