@@ -11,6 +11,9 @@ export default {
       fontFamily: {
         sans: ['"Noto Sans JP"', 'sans-serif'],
       },
+      animation: {
+        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 3',
+      },
     },
   },
   plugins: [],

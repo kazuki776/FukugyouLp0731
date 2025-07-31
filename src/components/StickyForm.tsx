@@ -36,24 +36,24 @@ const StickyForm: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Listen for scroll events to the form section
+    // Listen for scroll events to the form section and add highlight animation
     const handleFormHighlight = () => {
       setIsHighlighted(true);
       // Remove highlight after animation completes
-      setTimeout(() => setIsHighlighted(false), 2000);
+      setTimeout(() => setIsHighlighted(false), 3000);
     };
 
-    // Check if we're scrolling to this form section
+    // Check if we're scrolling to this form section and trigger highlight
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.target.id === 'form-section') {
-            // Small delay to ensure scroll animation completes first
-            setTimeout(handleFormHighlight, 300);
+            // Delay to ensure scroll animation completes first
+            setTimeout(handleFormHighlight, 500);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     const formSection = document.getElementById('form-section');
@@ -166,10 +166,11 @@ const StickyForm: React.FC = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 shadow-2xl animate-pulse' 
       viewport={{ once: true }}
       className="bg-white rounded-xl shadow-xl p-8"
     >
+      <div className={`${isHighlighted ? 'animate-pulse' : ''}`}>
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-2">
           【無料】待機中人材リストを見る
@@ -297,6 +298,7 @@ const StickyForm: React.FC = () => {
           <span>お客様の情報は安全に保護されます。</span>
         </div>
       </form>
+      </div>
     </motion.div>
   );
 };
