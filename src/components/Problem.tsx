@@ -32,7 +32,7 @@ const Problem: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            こんな<span className="text-red-600">課題</span>に直面していませんか？
+            この<span className="text-red-600">課題</span>解決できます。
           </h2>
         </motion.div>
         
