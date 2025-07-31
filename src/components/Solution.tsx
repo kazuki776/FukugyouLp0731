@@ -35,38 +35,41 @@ const Solution: React.FC = () => {
   ];
 
   const DonutChart: React.FC<{ percentage: number; label: string }> = ({ percentage, label }) => {
-    const radius = 35;
-    const strokeWidth = 6;
+    const radius = 50;
+    const strokeWidth = 12;
     const normalizedRadius = radius - strokeWidth * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
 
     return (
-      <div className="relative w-24 h-24 mx-auto">
-        <svg width="96" height="96" className="transform -rotate-90">
+      <div className="relative w-32 h-32 mx-auto">
+        <svg width="128" height="128" className="transform -rotate-90">
           <circle
-            stroke="#E5E7EB"
+            stroke="#F3F4F6"
             fill="transparent"
             strokeWidth={strokeWidth}
             r={normalizedRadius}
-            cx="48"
-            cy="48"
+            cx="64"
+            cy="64"
           />
           <circle
-            stroke="#4A2E8A"
+            stroke="url(#gradient)"
             fill="transparent"
             strokeWidth={strokeWidth}
             strokeDasharray={strokeDasharray}
             strokeLinecap="round"
             r={normalizedRadius}
-            cx="48"
-            cy="48"
+            cx="64"
+            cy="64"
             className="transition-all duration-1000 ease-out"
           />
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#7C3AED" />
+              <stop offset="100%" stopColor="#4A2E8A" />
+            </linearGradient>
+          </defs>
         </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-xl font-bold text-vb-purple">{label}</span>
-        </div>
       </div>
     );
   };
