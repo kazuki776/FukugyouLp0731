@@ -31,10 +31,10 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+          className="text-3xl md:text-6xl font-bold text-white mb-6 leading-tight"
         >
-          エンジニアを、必要な時に。<br />
-          必要な分だけリソースを確保。
+          エンジニアが、必要な時に。<br />
+          必要な分だけ。
         </motion.h1>
         
         <motion.p
