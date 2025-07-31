@@ -53,20 +53,27 @@ const HowToUse: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center"
+              className="relative bg-white rounded-xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 md:text-center"
             >
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-vb-purple text-white rounded-full flex items-center justify-center font-bold">
                 {step.number}
               </div>
-              <div className="text-vb-blue mb-6 flex justify-center mt-4">
-                <step.icon size={48} />
+              
+              {/* Mobile Layout: Icon left, text right */}
+              <div className="flex items-start gap-4 mt-4 md:block">
+                <div className="text-vb-blue flex-shrink-0 md:mb-6 md:flex md:justify-center">
+                  <step.icon size={32} className="md:w-12 md:h-12" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-4 leading-tight">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
-                {step.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {step.description}
-              </p>
+              
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gray-300">
                   <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-300 border-y-2 border-y-transparent"></div>
