@@ -94,29 +94,33 @@ const Solution: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center min-h-[280px] flex flex-col justify-between"
+              className="bg-white rounded-xl p-4 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 md:text-center md:min-h-[280px] md:flex md:flex-col md:justify-between"
             >
-              <div>
-                <div className="text-vb-purple mb-4 flex justify-center">
-                  <benefit.icon size={40} />
+              {/* Mobile Layout: Icon left, text right */}
+              <div className="flex items-start gap-4 md:block">
+                <div className="text-vb-purple flex-shrink-0 md:mb-4 md:flex md:justify-center">
+                  <benefit.icon size={32} className="md:w-10 md:h-10" />
                 </div>
-                <h3 className="text-lg font-bold text-vb-purple mb-2">
-                  【{benefit.title}】
-                </h3>
-                <h4 className="text-base font-semibold text-gray-700 mb-4">
-                  {benefit.subtitle}
-                  {benefit.highlight && (
-                    <>
-                      <span className="font-bold text-2xl text-vb-purple mx-1">
-                        {benefit.highlight}
-                      </span>
-                      {benefit.suffix}
-                    </>
-                  )}
-                </h4>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-bold text-vb-purple mb-1 md:mb-2">
+                    【{benefit.title}】
+                  </h3>
+                  <h4 className="text-sm md:text-base font-semibold text-gray-700 mb-2 md:mb-4 leading-tight">
+                    {benefit.subtitle}
+                    {benefit.highlight && (
+                      <>
+                        <span className="font-bold text-xl md:text-2xl text-vb-purple mx-1">
+                          {benefit.highlight}
+                        </span>
+                        {benefit.suffix}
+                      </>
+                    )}
+                  </h4>
+                </div>
               </div>
+              {/* Donut Chart - hidden on mobile for cards with charts */}
               {(benefit.title === "実績" || benefit.title === "柔軟性") && (
-                <div className="mt-auto">
+                <div className="hidden md:block md:mt-auto">
                   <DonutChart 
                     percentage={benefit.title === "実績" ? 60 : 50} 
                     label={benefit.highlight || "50%+"} 
